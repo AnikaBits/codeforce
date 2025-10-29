@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    string name[1005];
+    int ar[1005], ma[1005], sc[1005], en[1005], sum[1005];
+
+
+    for (int i = 0; i < n; i++) {
+        cin >> name[i] >> ar[i] >> ma[i] >> sc[i] >> en[i];
+        sum[i] = ar[i] + ma[i] + sc[i] + en[i];
+    }
+
+   
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            bool needSwap = false;
+
+            if (sum[i] < sum[j])
+                needSwap = true;
+            else if (sum[i] == sum[j] && name[i] > name[j])
+                needSwap = true;
+
+            if (needSwap) {
+                swap(sum[i], sum[j]);
+                swap(name[i], name[j]);
+                swap(ar[i], ar[j]);
+                swap(ma[i], ma[j]);
+                swap(sc[i], sc[j]);
+                swap(en[i], en[j]);
+            }
+        }
+    }
+
+
+    for (int i = 0; i < n; i++) {
+        cout << name[i] << " " << sum[i] << " "
+             << ar[i] << " " << ma[i] << " " << sc[i] << " " << en[i] << "\n";
+    }
+
+    return 0;
+}
+
